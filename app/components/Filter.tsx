@@ -1,5 +1,4 @@
 "use client"
-import Image from 'next/image'
 
 import { ChevronDown } from 'lucide-react'
 import { DropdownMenuCheckboxItemProps } from "@radix-ui/react-dropdown-menu"
@@ -34,7 +33,9 @@ export default function Filter () {
 
     return (
         <div className="filter">
-            <div className='filter-upper-row'>
+            <div className='filter-row'>
+                <TimePicker/>
+                <DatePicker/>
                 <DropdownMenu>
                     <DropdownMenuTrigger asChild>
                         <Button variant="outline">
@@ -84,6 +85,18 @@ export default function Filter () {
                 <DropdownMenu>
                     <DropdownMenuTrigger asChild>
                         <Button variant="outline">
+                            <span>Price: {price} EGP/hr</span>
+                            <ChevronDown className='h-4 w-4 !mr-0'/>
+                        </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent className="w-56 px-4">
+                        <DropdownMenuLabel className='my-4'>Max Price Per Hour: <span className='block'>{price} EGP</span></DropdownMenuLabel>
+                        <Slider defaultValue={[price]} min={100} max={800} step={25} onValueChange={(value) => setPrice(value[0])} className='mb-4'/>
+                    </DropdownMenuContent>
+                </DropdownMenu>
+                <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                        <Button variant="outline">
                             <span>Radius: {radius}</span>
                             <ChevronDown className='h-4 w-4 !mr-0'/>
                         </Button>
@@ -96,18 +109,6 @@ export default function Filter () {
                         <DropdownMenuRadioItem value="2.5 Km">{'<'} 2.5 Km</DropdownMenuRadioItem>
                         <DropdownMenuRadioItem value="5 Km">{'<'} 5 Km</DropdownMenuRadioItem>
                         </DropdownMenuRadioGroup>
-                    </DropdownMenuContent>
-                </DropdownMenu>
-                <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                        <Button variant="outline">
-                            <span>Price: {price} EGP/hr</span>
-                            <ChevronDown className='h-4 w-4 !mr-0'/>
-                        </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent className="w-56">
-                        <DropdownMenuLabel className='my-4'>Max Price Per Hour: <span className='block'>{price} EGP</span></DropdownMenuLabel>
-                        <Slider defaultValue={[price]} min={100} max={800} step={25} onValueChange={(value) => setPrice(value[0])} className='mb-4'/>
                     </DropdownMenuContent>
                 </DropdownMenu>
                 <DropdownMenu>
@@ -140,10 +141,6 @@ export default function Filter () {
                         </DropdownMenuCheckboxItem>
                     </DropdownMenuContent>
                 </DropdownMenu>
-            </div>
-            <div className='filter-lower-row flex-center'>
-                <DatePicker/>
-                <TimePicker/>
             </div>
         </div>
     )
