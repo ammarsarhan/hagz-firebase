@@ -1,9 +1,11 @@
+import Navigation from "@/app/components/Navigation";
 import Filter from "@/app/components/Filter";
 import PitchCard from "@/app/components/PitchCard"
 
 export default function Home() {
   return (
     <>
+      <Navigation/>
       <Filter/>
       <main className="flex-1 overflow-auto">
         <div className="w-full lg:grid lg:h-full lg:grid-cols-2">

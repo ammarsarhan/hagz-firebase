@@ -12,7 +12,7 @@ import {
  
 export default function PitchCard({}) {
   return (
-    <Card className="w-[300px] m-4">
+    <Card className="max-w-[300px] m-4">
       <CardHeader>
         <Image src={""} width={275} height={275} alt='Pitch Image' className='bg-black rounded-md mb-4'/>
         <CardTitle className='text-md'>Pitch Name</CardTitle>

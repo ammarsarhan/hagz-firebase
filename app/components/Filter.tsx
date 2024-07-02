@@ -38,7 +38,7 @@ export default function Filter () {
                 <DatePicker/>
                 <DropdownMenu>
                     <DropdownMenuTrigger asChild>
-                        <Button variant="outline">
+                        <Button variant="outline" className='h-8'>
                             <span>Size</span>
                             <ChevronDown className='h-4 w-4 !mr-0'/>
                         </Button>
@@ -68,7 +68,7 @@ export default function Filter () {
                 </DropdownMenu>
                 <DropdownMenu>
                     <DropdownMenuTrigger asChild>
-                        <Button variant="outline">
+                        <Button variant="outline" className='h-8'>
                             <span>Ball{ballProvided ? `: ${ballProvided}` : ''}</span>
                             <ChevronDown className='h-4 w-4 !mr-0'/>
                         </Button>
@@ -84,7 +84,7 @@ export default function Filter () {
                 </DropdownMenu>
                 <DropdownMenu>
                     <DropdownMenuTrigger asChild>
-                        <Button variant="outline">
+                        <Button variant="outline" className='h-8'>
                             <span>Price: {price} EGP/hr</span>
                             <ChevronDown className='h-4 w-4 !mr-0'/>
                         </Button>
@@ -96,7 +96,7 @@ export default function Filter () {
                 </DropdownMenu>
                 <DropdownMenu>
                     <DropdownMenuTrigger asChild>
-                        <Button variant="outline">
+                        <Button variant="outline" className='h-8'>
                             <span>Radius: {radius}</span>
                             <ChevronDown className='h-4 w-4 !mr-0'/>
                         </Button>
@@ -113,7 +113,7 @@ export default function Filter () {
                 </DropdownMenu>
                 <DropdownMenu>
                     <DropdownMenuTrigger asChild>
-                        <Button variant="outline">
+                        <Button variant="outline" className='h-8'>
                             <span>Ground</span>
                             <ChevronDown className='h-4 w-4 !mr-0'/>
                         </Button>
