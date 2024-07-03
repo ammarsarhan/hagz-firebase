@@ -13,11 +13,13 @@ export default function Navigation () {
 
     const [signedIn, setSignedIn] = useState(false);
     const [image, setImage] = useState("");
+    const [uid, setUID] = useState("");
 
     useEffect(() => {
         if (user) {
             setSignedIn(true)
             setImage(user.photoURL)
+            setUID(user.uid)
         } 
         else setSignedIn(false);
     }, [user])
@@ -26,7 +28,7 @@ export default function Navigation () {
         <nav className="flex items-center justify-between border-b-[1px] p-3">
             <Logo/>
             <Search/>
-            <ProfileDropdown signedIn={signedIn} image={image}/>
+            <ProfileDropdown signedIn={signedIn} image={image} uid={uid}/>
         </nav>
     )
 }

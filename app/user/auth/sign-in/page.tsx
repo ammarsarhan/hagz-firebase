@@ -51,9 +51,7 @@ export default function SignIn() {
         description: "Logged in to your account successfully!"
       })
 
-      setTimeout(() => {
-        router.push('/')
-      }, 1000)
+      router.push('/')
     }
   }
 
@@ -95,6 +93,8 @@ export default function SignIn() {
             <Button type="submit" className="w-full">
               Login
             </Button>
+          </form>
+          <div className="grid gap-4">
             <span className="block text-sm text-center">or</span>
             <Button variant="outline" className="w-full">
               Login with Google
@@ -102,7 +102,7 @@ export default function SignIn() {
             <Button variant="outline" className="w-full">
               Login with Facebook
             </Button>
-          </form>
+          </div>
           <div className="mt-4 text-center text-sm">
             Don&apos;t have an account?{" "}
             <Link href="/user/auth/sign-up" className="underline">

@@ -57,9 +57,7 @@ export default function SignUp() {
         description: "Account was created successfully!"
       })
 
-      setTimeout(() => {
-        router.push('/')
-      }, 1000)
+      router.push('/')
     }
   }
 
@@ -122,14 +120,16 @@ export default function SignUp() {
             <Button type="submit" className="w-full">
               Sign Up
             </Button>
-            <span className="block text-center text-sm">or</span>
+          </form>
+          <div className="grid gap-2">
+            <span className="block text-center text-sm mb-4">or</span>
             <Button variant="outline" className="w-full">
               Sign up with Google
             </Button>
             <Button variant="outline" className="w-full">
                 Sign up with Facebook
             </Button>
-          </form>
+          </div>
           <div className="mt-4 text-center text-sm">
             Already have an account?{" "}
             <Link href="/user/auth/sign-in" className="underline">
