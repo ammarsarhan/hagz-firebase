@@ -77,7 +77,7 @@ export default function SignIn() {
                 required
                 {...register("email")}
               />
-              {errors.email && <p className="text-red-500 text-sm mt-2">{errors.email.message}</p>}
+              {errors.email && <p className="text-red-500 text-sm">{errors.email.message}</p>}
             </div>
             <div className="grid gap-2">
               <div className="flex items-center">
@@ -90,7 +90,7 @@ export default function SignIn() {
                 </Link>
               </div>
               <Input id="password" type="password" required {...register("password")}/>
-              {errors.password && <p className="text-red-500 text-sm mt-2">{errors.password.message}</p>}
+              {errors.password && <p className="text-red-500 text-sm">{errors.password.message}</p>}
             </div>
             <Button type="submit" className="w-full">
               Login

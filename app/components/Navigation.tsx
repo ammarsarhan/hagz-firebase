@@ -10,10 +10,15 @@ import { useAuthContext } from "@/context/AuthContext";
 
 export default function Navigation () {
     const { user } = useAuthContext();
+
     const [signedIn, setSignedIn] = useState(false);
+    const [image, setImage] = useState("");
 
     useEffect(() => {
-        if (user) setSignedIn(true) 
+        if (user) {
+            setSignedIn(true)
+            setImage(user.photoURL)
+        } 
         else setSignedIn(false);
     }, [user])
 
@@ -21,11 +26,10 @@ export default function Navigation () {
         <nav className="flex items-center justify-between border-b-[1px] p-3">
             <Logo/>
             <Search/>
-            <ProfileDropdown signedIn={signedIn}/>
+            <ProfileDropdown signedIn={signedIn} image={image}/>
         </nav>
     )
 }
-
 
 // import React from "react";
 // import { useRouter } from "next/navigation";

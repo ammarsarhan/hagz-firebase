@@ -19,11 +19,11 @@ import { ChevronDown } from 'lucide-react'
 import { useToast } from '@/app/components/ui/use-toast'
 import unAuthenticateUser from "@/firebase/auth/sign-out"
 
-export function ProfileAvatar () {
+export function ProfileAvatar ({source}: {source: string}) {
     return (
         <div className='flex items-center'>
             <Avatar className='h-8 w-8'>
-                <AvatarImage src="" alt="@shadcn"/>
+                <AvatarImage src={source} alt="@shadcn"/>
                 <AvatarFallback className="text-xs">AY</AvatarFallback>
             </Avatar>
             <ChevronDown className='h-4'/>
@@ -31,7 +31,7 @@ export function ProfileAvatar () {
     )
 }
  
-export default function ProfileDropdown({signedIn}: {signedIn: boolean}) {
+export default function ProfileDropdown({signedIn, image}: {signedIn: boolean, image: string}) {
   const { toast } = useToast();
   const showToaster = () => {
     toast({
@@ -45,7 +45,7 @@ export default function ProfileDropdown({signedIn}: {signedIn: boolean}) {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <button className="mx-4 mr-1">
-            <ProfileAvatar/>
+            <ProfileAvatar source={image}/>
         </button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
