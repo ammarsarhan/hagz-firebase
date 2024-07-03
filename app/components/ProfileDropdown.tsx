@@ -16,6 +16,8 @@ import {
 } from "@/app/components/ui/dropdown-menu"
  
 import { ChevronDown } from 'lucide-react'
+import { useToast } from '@/app/components/ui/use-toast'
+import unAuthenticateUser from "@/firebase/auth/sign-out"
 
 export function ProfileAvatar () {
     return (
@@ -30,6 +32,14 @@ export function ProfileAvatar () {
 }
  
 export default function ProfileDropdown({signedIn}: {signedIn: boolean}) {
+  const { toast } = useToast();
+  const showToaster = () => {
+    toast({
+      title: "Signed Out",
+      description: "You have been signed out successfully."
+    })
+  }
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -44,7 +54,7 @@ export default function ProfileDropdown({signedIn}: {signedIn: boolean}) {
         (<div>
           <Link href='/user/insert_id_here' className="p-2 text-sm block">Account</Link>
           <Link href='/user/insert_id_here/reservations' className="p-2 text-sm block">Reservations</Link>
-          <Link href='/user/auth/sign-out' className="p-2 text-sm block">Sign Out</Link>
+          <button onClick={() => unAuthenticateUser(showToaster)} className="p-2 text-sm block">Sign Out</button>
           <Link href='/privacy-policy' className="p-2 text-sm block">Privacy Policy</Link>
         </div>) 
         : (<div className='pr-3'>
