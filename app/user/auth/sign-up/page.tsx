@@ -24,7 +24,6 @@ type FormData = {
   confirmPassword: string;
 }
 
-
 export default function SignUp() {
   const { toast } = useToast();
   const router = useRouter();

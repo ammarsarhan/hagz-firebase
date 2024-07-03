@@ -36,7 +36,8 @@ export default function ProfileDropdown({signedIn}: {signedIn: boolean}) {
   const showToaster = () => {
     toast({
       title: "Signed Out",
-      description: "You have been signed out successfully."
+      description: "You have been signed out successfully",
+      variant: "destructive"
     })
   }
 
