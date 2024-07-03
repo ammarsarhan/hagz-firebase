@@ -24,9 +24,12 @@ import { useState } from "react"
 type Checked = DropdownMenuCheckboxItemProps["checked"]
 
 export default function Filter () {
-    const [showStatusBar, setShowStatusBar] = useState<Checked>(true)
-    const [showActivityBar, setShowActivityBar] = useState<Checked>(true)
-    const [showPanel, setShowPanel] = useState<Checked>(true)
+    const [showFive, setShowFive] = useState<Checked>(true)
+    const [showSeven, setShowSeven] = useState<Checked>(true)
+    const [showEleven, setShowEleven] = useState<Checked>(true)
+    const [showAG, setShowAG] = useState<Checked>(true)
+    const [showNG, setShowNG] = useState<Checked>(true)
+    const [showHG, setShowHG] = useState<Checked>(true)
     const [ballProvided, setBallProvided] = useState('')
     const [radius, setRadius] = useState("1 Km")
     const [price, setPrice] = useState(150)
@@ -47,20 +50,20 @@ export default function Filter () {
                         <DropdownMenuLabel>Pitch Size</DropdownMenuLabel>
                         <DropdownMenuSeparator />
                         <DropdownMenuCheckboxItem
-                        checked={showStatusBar}
-                        onCheckedChange={setShowStatusBar}
+                        checked={showFive}
+                        onCheckedChange={setShowFive}
                         >
                         5-A-Side
                         </DropdownMenuCheckboxItem>
                         <DropdownMenuCheckboxItem
-                        checked={showActivityBar}
-                        onCheckedChange={setShowActivityBar}
+                        checked={showSeven}
+                        onCheckedChange={setShowSeven}
                         >
                         7-A-Side
                         </DropdownMenuCheckboxItem>
                         <DropdownMenuCheckboxItem
-                        checked={showPanel}
-                        onCheckedChange={setShowPanel}
+                        checked={showEleven}
+                        onCheckedChange={setShowEleven}
                         >
                         11-A-Side
                         </DropdownMenuCheckboxItem>
@@ -122,20 +125,20 @@ export default function Filter () {
                         <DropdownMenuLabel>Ground Type</DropdownMenuLabel>
                         <DropdownMenuSeparator />
                         <DropdownMenuCheckboxItem
-                        checked={showStatusBar}
-                        onCheckedChange={setShowStatusBar}
+                        checked={showAG}
+                        onCheckedChange={setShowAG}
                         >
                         Artifical Turf
                         </DropdownMenuCheckboxItem>
                         <DropdownMenuCheckboxItem
-                        checked={showActivityBar}
-                        onCheckedChange={setShowActivityBar}
+                        checked={showNG}
+                        onCheckedChange={setShowNG}
                         >
                         Natural Grass
                         </DropdownMenuCheckboxItem>
                         <DropdownMenuCheckboxItem
-                        checked={showPanel}
-                        onCheckedChange={setShowPanel}
+                        checked={showHG}
+                        onCheckedChange={setShowHG}
                         >
                         Hybrid Grass
                         </DropdownMenuCheckboxItem>

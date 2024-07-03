@@ -17,7 +17,7 @@ export default function Home() {
             <PitchCard/>
             <PitchCard/>
           </div>
-          <div className="hidden bg-muted lg:block bg-blue-400">
+          <div className="hidden bg-muted lg:block bg-green-900">
           </div>
         </div>
       </main>
