@@ -15,17 +15,25 @@ import {
   DropdownMenuTrigger,
 } from "@/app/components/ui/dropdown-menu"
  
-import { ChevronDown } from 'lucide-react'
+import { ChevronDown, User } from 'lucide-react'
 import { useToast } from '@/app/components/ui/use-toast'
 
 import unAuthenticateUser from "@/firebase/auth/sign-out"
+import { useEffect } from 'react'
 
-export function ProfileAvatar ({source}: {source: string}) {
+export function ProfileAvatar ({source, signedIn}: {source: string, signedIn: boolean}) {
+  useEffect(() => {
+    console.log(source)
+  }, [source])
+
     return (
         <div className='flex items-center'>
-            <Avatar className='h-8 w-8'>
-                <AvatarImage src={source} alt="@shadcn"/>
-                <AvatarFallback className="text-xs">AY</AvatarFallback>
+            <Avatar className='h-8 w-8 flex-center'>
+                { signedIn ? 
+                <>                
+                  <AvatarImage src={source} alt="@AB"/>
+                  <AvatarFallback className="text-xs">AB</AvatarFallback>
+                </> : <User className='h-7 w-7 p-1 rounded-full border-[1px] text-gray-600'/>}
             </Avatar>
             <ChevronDown className='h-4'/>
         </div>
@@ -46,7 +54,7 @@ export default function ProfileDropdown({signedIn, image, uid}: {signedIn: boole
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <button className="mx-4 mr-1">
-            <ProfileAvatar source={image}/>
+            <ProfileAvatar signedIn={signedIn} source={image}/>
         </button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
