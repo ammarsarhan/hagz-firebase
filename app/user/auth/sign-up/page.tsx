@@ -29,8 +29,8 @@ export default function SignUp() {
   const router = useRouter();
 
   const formSchema: ZodType<FormData> = z.object({
-    firstName: z.string().min(2, {message: 'Name must contain at least 2 characters'}).max(25, {message: 'Name must contain at most 25 characters'}),
-    lastName: z.string().min(2, {message: 'Name must contain at least 2 characters'}).max(25, {message: 'Name must contain at most 25 characters'}),
+    firstName: z.string().min(2, {message: 'Name must contain at least 2 characters'}).max(25, {message: 'Name must contain at most 25 characters'}).refine(s => !s.includes(' '), 'Name must not contain any spaces'),
+    lastName: z.string().min(2, {message: 'Name must contain at least 2 characters'}).max(25, {message: 'Name must contain at most 25 characters'}).refine(s => !s.includes(' '), 'Name must not contain any spaces'),
     email: z.string().email({message: 'Please enter a valid email address'}),
     password: z.string().min(8, {message: 'Password must contain at least 8 characters'}).max(25, {message: 'Password must contain at most 25 characters'}).regex(new RegExp(".*[A-Z].*"), "Password must contain one uppercase character").regex(new RegExp(".*[a-z].*"), "Password must contain one lowercase character").regex(new RegExp(".*\\d.*"), "Password must contain at least one number"),
     confirmPassword: z.string()
@@ -41,7 +41,7 @@ export default function SignUp() {
 
   const { register, handleSubmit, formState: { errors }} = useForm<FormData>({resolver: zodResolver(formSchema)})
   const onFormSubmit = async (data: FormData) => {
-    const {result, error} = await signUp(data.email, data.password)
+    const {result, error} = await signUp(`${data.firstName} ${data.lastName}`, data.email, data.password)
 
     if (error) {
       toast({

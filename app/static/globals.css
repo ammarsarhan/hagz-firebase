@@ -104,6 +104,6 @@ div.filter-row * {
   align-items: center;
 }
 
-div.card-content label{
+div.card-content label {
   @apply mb-2;
 }

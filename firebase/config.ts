@@ -1,5 +1,5 @@
-import { initializeApp, getApps } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
+import { initializeApp } from "firebase/app";
+// import { getAnalytics } from "firebase/analytics";
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -12,6 +12,6 @@ const firebaseConfig = {
 };
 
 const firebase = initializeApp(firebaseConfig);
-const analytics = getAnalytics(firebase);
+// const analytics = getAnalytics(firebase);
 
 export default firebase;

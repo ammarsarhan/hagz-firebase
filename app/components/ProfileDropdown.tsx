@@ -15,24 +15,19 @@ import {
   DropdownMenuTrigger,
 } from "@/app/components/ui/dropdown-menu"
  
-import { ChevronDown, User } from 'lucide-react'
-import { useToast } from '@/app/components/ui/use-toast'
-
-import unAuthenticateUser from "@/firebase/auth/sign-out"
 import { useEffect } from 'react'
+import { useToast } from '@/app/components/ui/use-toast'
+import { ChevronDown, User } from 'lucide-react'
+import unAuthenticateUser from "@/firebase/auth/sign-out"
 
-export function ProfileAvatar ({source, signedIn}: {source: string, signedIn: boolean}) {
-  useEffect(() => {
-    console.log(source)
-  }, [source])
-
+export function ProfileAvatar ({name, source, signedIn}: {name: string, source: string, signedIn: boolean}) {
     return (
         <div className='flex items-center'>
             <Avatar className='h-8 w-8 flex-center'>
                 { signedIn ? 
                 <>                
                   <AvatarImage src={source} alt="@AB"/>
-                  <AvatarFallback className="text-xs">AB</AvatarFallback>
+                  <AvatarFallback className="text-xs">{name ? name.split(' ').map(i => i.charAt(0)) : 'AB'}</AvatarFallback>
                 </> : <User className='h-7 w-7 p-1 rounded-full border-[1px] text-gray-600'/>}
             </Avatar>
             <ChevronDown className='h-4'/>
@@ -40,7 +35,7 @@ export function ProfileAvatar ({source, signedIn}: {source: string, signedIn: bo
     )
 }
  
-export default function ProfileDropdown({signedIn, image, uid}: {signedIn: boolean, image: string, uid: string}) {
+export default function ProfileDropdown({name, signedIn, image, uid}: {name: string, signedIn: boolean, image: string, uid: string}) {
   const { toast } = useToast();
   const showToaster = () => {
     toast({
@@ -54,7 +49,7 @@ export default function ProfileDropdown({signedIn, image, uid}: {signedIn: boole
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <button className="mx-4 mr-1">
-            <ProfileAvatar signedIn={signedIn} source={image}/>
+            <ProfileAvatar name={name} signedIn={signedIn} source={image}/>
         </button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">

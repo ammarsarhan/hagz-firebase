@@ -14,12 +14,14 @@ export default function Navigation () {
     const [signedIn, setSignedIn] = useState(false);
     const [image, setImage] = useState("");
     const [uid, setUID] = useState("");
+    const [name, setName] = useState("");
 
     useEffect(() => {
         if (user) {
             setSignedIn(true)
             setImage(user.photoURL)
             setUID(user.uid)
+            setName(user.displayName)
         } 
         else setSignedIn(false);
     }, [user])
@@ -28,22 +30,7 @@ export default function Navigation () {
         <nav className="flex items-center justify-between border-b-[1px] p-3">
             <Logo/>
             <Search/>
-            <ProfileDropdown signedIn={signedIn} image={image} uid={uid}/>
+            <ProfileDropdown name={name} signedIn={signedIn} image={image} uid={uid}/>
         </nav>
     )
 }
-
-// import React from "react";
-// import { useRouter } from "next/navigation";
-// function Page() {
-//     const { user } = useAuthContext()
-//     const router = useRouter()
-
-//     React.useEffect(() => {
-//         if (user == null) router.push("/")
-//     }, [user])
-
-//     return (<h1>Only logged in users can view this page</h1>);
-// }
-
-// export default Page;
