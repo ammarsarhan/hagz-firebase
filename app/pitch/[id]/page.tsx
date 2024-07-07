@@ -19,7 +19,7 @@ export default function Pitch ({params}: {params: {id: string}}) {
                 </div>
                 <div className="my-6">
                     <Label className="mx-8 text-gray-700">Other Pitches You May Like:</Label>
-                    <div className="flex overflow-x-scroll mb-16 mt-2 sm:my-2">
+                    <div className="flex overflow-x-scroll mb-16 sm:my-2">
                         <PitchCard/>
                         <PitchCard/>
                         <PitchCard/>

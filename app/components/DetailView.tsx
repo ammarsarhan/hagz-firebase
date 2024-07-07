@@ -1,7 +1,35 @@
+"use client"
+
+import { ShareIcon, StarIcon, MapPinIcon } from "lucide-react"
+
 export default function DetailView() {
     return (
-        <div className="h-[75vh] border-[1px] rounded-lg sm:m-4 lg:m-0 lg:mx-2">
-            
+        <div className="flex flex-col rounded-lg sm:m-4 lg:m-0 lg:mx-2 px-5 py-7 border-[1px]">
+            <span className="mb-4 text-sm">Available</span>
+            <div className="flex justify-between items-center mb-4">
+                <span className="flex items-center text-gray-600 text-sm"><MapPinIcon width={16} height={16} className="mr-2"/>Green Plaza, Smouha, Alexandria</span>
+                <div className="flex justify-end items-center">
+                    <button onClick={() => alert('Starred')}><StarIcon width={16} height={16} className="mx-3"/></button>
+                    <button onClick={() => alert('Shared')}><ShareIcon width={16} height={16}/></button>
+                </div>
+            </div>
+            <h1 className="text-2xl md:text-4xl font-bold mb-4 leading-[150%]">El Nasr Football Club (نادي النصر للقوات المسلحة)</h1>
+            <span className="text-sm flex items-center mb-4">Rating:
+                <div className="flex mx-2">
+                    <StarIcon width={16} height={16}/>
+                    <StarIcon width={16} height={16}/>
+                    <StarIcon width={16} height={16}/>
+                    <StarIcon width={16} height={16}/>
+                    <StarIcon width={16} height={16} className="text-gray-500"/>
+                </div>
+            </span>
+            <div className="flex flex-col-reverse sm:flex-row justify-between items-start text-sm mb-2">
+                <p className="w-full sm:w-2/3">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eum ut dolores incidunt minus saepe tenetur eum ut dolores incidunt minus saepe tenetur.</p>
+                <a href="https://maps.google.com" target="_blank" className="text-blue-800 underline mb-4 sm:ml-4 sm:mb-0">Open In Maps</a>
+            </div>
+            <div className="h-full text-sm text-gray-500 mt-4">
+                <span>Amenities:</span>
+            </div>
         </div>
     )
 }

@@ -59,8 +59,8 @@ export default function ProfileDropdown({name, signedIn, image, uid}: {name: str
         (<div>
           <Link href={`/user/${uid}/settings`} className="p-2 text-sm block">Account</Link>
           <Link href={`/user/${uid}/reservations`} className="p-2 text-sm block">Reservations</Link>
-          <button onClick={() => unAuthenticateUser(showToaster)} className="p-2 text-sm block">Sign Out</button>
-          <Link href='/privacy-policy' className="p-2 text-sm block">Privacy Policy</Link>
+          <Link href={`/user/${uid}/starred`} className="p-2 text-sm block">Starred</Link>
+          <button onClick={() => unAuthenticateUser(showToaster)} className="p-2 text-sm">Sign Out</button>
         </div>) 
         : (<div className='pr-3'>
           <Link href='/user/auth/sign-in' className="p-2 text-sm block">Log In</Link>
