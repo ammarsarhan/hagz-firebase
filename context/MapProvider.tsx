@@ -11,8 +11,8 @@ export default function MapProvider ({ children }: { children: ReactNode }) {
     libraries: libraries as Libraries,
   });
 
-  if (loadError) return <p>Encountered error while loading Google Maps. Error: {loadError.message}</p>
-  if(!scriptLoaded) return <p>Map is loading...</p>
+  if (loadError) return <div className='h-full flex-center text-center'>Encountered error while loading Google Maps. <br/> {loadError.message}</div>
+  if(!scriptLoaded) return <div className='h-full flex-center text-center'>Map is loading...</div>
 
   return children;
 }

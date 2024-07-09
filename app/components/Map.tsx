@@ -18,7 +18,7 @@ const defaultMapZoom = 18;
 
 export default function Map () {
     const [locationPermitted, setLocationPermitted] = useState(false); // Use this for error handling later on!
-    const [mapCenter, setMapCenter] = useState({ lat: 31, lng: 29 });
+    const [mapCenter, setMapCenter] = useState({ lat: 31.2001, lng: 29.9187 });
 
     useEffect(() => {
         if ('geolocation' in navigator) {

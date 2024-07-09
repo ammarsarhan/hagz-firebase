@@ -31,8 +31,17 @@ export default function DetailView () {
             </div>
             <div className="h-full flex flex-col justify-end text-sm text-gray-500 mt-4">
                 <span>Details:</span>
-                <div className="my-2">
-                    Hankamel Details Hena
+                <div className="flex flex-col gap-y-2 mb-6 xxs:gap-0 xxs:flex-row xxs:justify-around items-center my-4 text-black">
+                    <div className="flex flex-col gap-y-2 text-left xxs:text-center w-full xxs:w-auto">
+                        <span className="font-semibold">Price: 250 EGP/hr</span>
+                        <span className="font-semibold">Size: 5-A-Side</span>
+                        <span>Ball: Provided</span>
+                    </div>
+                    <div className="flex flex-col gap-y-2 text-left xxs:text-center w-full xxs:w-auto">
+                        <span>Ground: Artificial Grass</span>
+                        <span>Ball: Provided</span>
+                        <span>Price: 250 EGP/hr</span>
+                    </div>
                 </div>
                 <span>Specify Date:</span>
                 <div className="my-2">
