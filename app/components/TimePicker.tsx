@@ -12,12 +12,12 @@ import {
   PopoverTrigger,
 } from "@/app/components/ui/popover"
 
-export default function TimePicker () {
+export default function TimePicker ({fullWidth = false}: {fullWidth?: boolean}) {
     const [date, setDate] = useState<Date>()
  
     return (
       <Popover>
-        <PopoverTrigger asChild>
+        <PopoverTrigger asChild className={cn(fullWidth && "w-full flex-center mb-2 xs:my-2")}>
           <Button
             variant={"outline"}
             className={cn(
@@ -30,7 +30,7 @@ export default function TimePicker () {
             <ChevronDown className="h-4"/>
           </Button>
         </PopoverTrigger>
-        <PopoverContent className="w-auto p-0" align="start">
+        <PopoverContent className="w-auto p-0" align="center">
           <Calendar
             mode="single"
             selected={date}

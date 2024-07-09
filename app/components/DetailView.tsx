@@ -1,11 +1,13 @@
 "use client"
 
 import { ShareIcon, StarIcon, MapPinIcon } from "lucide-react"
+import DatePicker from "@/app/components/DatePicker"
+import TimePicker from "@/app/components/TimePicker"
 
-export default function DetailView() {
+export default function DetailView () {
     return (
         <div className="flex flex-col rounded-lg sm:m-4 lg:m-0 lg:mx-2 px-5 py-7 border-[1px]">
-            <span className="mb-4 text-sm">Available</span>
+            <span className="mb-4 text-sm flex items-center"><div className="pulsating ml-1 mr-4"></div> Available @ Specified Time</span>
             <div className="flex justify-between items-center mb-4">
                 <span className="flex items-center text-gray-600 text-sm"><MapPinIcon width={16} height={16} className="mr-2"/>Green Plaza, Smouha, Alexandria</span>
                 <div className="flex justify-end items-center">
@@ -27,8 +29,19 @@ export default function DetailView() {
                 <p className="w-full sm:w-2/3">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eum ut dolores incidunt minus saepe tenetur eum ut dolores incidunt minus saepe tenetur.</p>
                 <a href="https://maps.google.com" target="_blank" className="text-blue-800 underline mb-4 sm:ml-4 sm:mb-0">Open In Maps</a>
             </div>
-            <div className="h-full text-sm text-gray-500 mt-4">
-                <span>Amenities:</span>
+            <div className="h-full flex flex-col justify-end text-sm text-gray-500 mt-4">
+                <span>Details:</span>
+                <div className="my-2">
+                    Hankamel Details Hena
+                </div>
+                <span>Specify Date:</span>
+                <div className="my-2">
+                    <div className="flex flex-col xs:gap-x-2 xs:flex-row mt-2 xs:mt-0">
+                        <TimePicker fullWidth={true}/>
+                        <TimePicker fullWidth={true}/>
+                    </div>
+                    <DatePicker fullWidth={true}/>
+                </div>
             </div>
         </div>
     )

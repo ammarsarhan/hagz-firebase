@@ -14,12 +14,12 @@ import {
   PopoverTrigger,
 } from "@/app/components/ui/popover"
  
-export default function DatePicker() {
+export default function DatePicker({fullWidth = false}: {fullWidth?: boolean}) {
   const [date, setDate] = useState<Date>()
  
   return (
     <Popover>
-      <PopoverTrigger asChild>
+      <PopoverTrigger asChild className={cn(fullWidth && "w-full flex-center")}>
         <Button
           variant={"outline"}
           className={cn(
@@ -32,7 +32,7 @@ export default function DatePicker() {
           <ChevronDown className="h-4"/>
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-auto p-0" align="start">
+      <PopoverContent className="w-auto p-0" align={fullWidth ? "center" : "start"}>
         <Calendar
           mode="single"
           selected={date}

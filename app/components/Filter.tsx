@@ -37,8 +37,8 @@ export default function Filter () {
     return (
         <div className="filter">
             <div className='filter-row'>
-                <TimePicker/>
                 <DatePicker/>
+                <TimePicker/>
                 <DropdownMenu>
                     <DropdownMenuTrigger asChild>
                         <Button variant="outline" className='h-8'>
