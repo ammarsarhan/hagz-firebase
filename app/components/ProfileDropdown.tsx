@@ -57,7 +57,7 @@ export default function ProfileDropdown({name, signedIn, image, uid}: {name: str
         <DropdownMenuSeparator/>
         {signedIn ? 
         (<div>
-          <Link href={`/user/${uid}/settings`} className="p-2 text-sm block">Account</Link>
+          <Link href={`/user/${uid}/settings`} className="p-2 text-sm block">Settings</Link>
           <Link href={`/user/${uid}/reservations`} className="p-2 text-sm block">Reservations</Link>
           <Link href={`/user/${uid}/starred`} className="p-2 text-sm block">Starred</Link>
           <button onClick={() => unAuthenticateUser(showToaster)} className="p-2 text-sm">Sign Out</button>
