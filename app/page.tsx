@@ -1,6 +1,9 @@
 import Navigation from "@/app/components/Navigation";
 import Filter from "@/app/components/Filter";
-import PitchCard from "@/app/components/PitchCard"
+import PitchCard from "@/app/components/PitchCard";
+
+import MapProvider from "@/context/MapProvider";
+import Map from "@/app/components/Map";
 
 export default function Home() {
   return (
@@ -17,8 +20,11 @@ export default function Home() {
             <PitchCard/>
             <PitchCard/>
           </div>
-          <div className="hidden bg-muted lg:block bg-green-900">
-          </div>
+          <MapProvider>
+            <div className="hidden bg-muted lg:block bg-green-900">
+              <Map/>
+            </div>
+          </MapProvider>
         </div>
       </main>
     </>
