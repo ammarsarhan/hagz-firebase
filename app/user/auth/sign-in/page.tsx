@@ -16,6 +16,7 @@ import { Label } from "@/app/components/ui/label"
 
 import { useToast } from "@/app/components/ui/use-toast"
 import { useRouter } from "next/navigation"
+import { useState } from "react"
 
 import Hero from '@/app/static/sign-in.gif'
 
@@ -29,7 +30,9 @@ const formSchema: ZodType<FormData> = z.object({
   password: z.string().min(8, "Password must be at least 8 characters"),
 })
 
-export default function SignIn() {
+export default function SignIn () {
+
+  const [loading, setLoading] = useState(false);
 
   const { toast } = useToast();
   const router = useRouter();
@@ -37,6 +40,7 @@ export default function SignIn() {
   const { register, handleSubmit, formState: {errors}} = useForm<FormData>({resolver: zodResolver(formSchema)})
 
   const onFormSubmit = async (data: FormData) => {
+    setLoading(true);
     const {result, error} = await signIn(data.email, data.password)
 
     if (error) {
@@ -45,6 +49,7 @@ export default function SignIn() {
         description: error.message,
         variant: "destructive"
       })
+      setLoading(false);
     }
 
     if (result) {
@@ -85,7 +90,7 @@ export default function SignIn() {
                 <div className="flex items-center">
                   <Label htmlFor="password">Password</Label>
                   <Link
-                    href="/forgot-password"
+                    href="/user/auth/forgot-password"
                     className="ml-auto inline-block text-sm underline"
                   >
                     Forgot your password?

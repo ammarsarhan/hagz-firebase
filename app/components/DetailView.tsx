@@ -9,7 +9,7 @@ import AvailabilityPin from '@/app/components/AvailabilityPin'
 export default function DetailView () {
     return (
         <div className="flex flex-col rounded-lg sm:m-4 lg:m-0 lg:mx-2 px-5 py-7 border-[1px]">
-            <AvailabilityPin available={false}/>
+            <AvailabilityPin available={true}/>
             <div className="flex justify-between items-center mb-8">
                 <span className="flex items-center text-gray-600 text-sm"><MapPinIcon width={16} height={16} className="mr-2"/>Green Plaza, Smouha, Alexandria</span>
                 <div className="flex justify-end items-center">

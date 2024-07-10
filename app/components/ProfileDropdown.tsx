@@ -12,9 +12,12 @@ import {
   DropdownMenuContent,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-  DropdownMenuTrigger,
+  DropdownMenuTrigger
 } from "@/app/components/ui/dropdown-menu"
  
+import { Dialog, DialogTrigger, DialogContent, DialogTitle, DialogHeader, DialogDescription, DialogClose } from '@/app/components/ui/dialog'
+import { Button } from '@/app/components/ui/button'
+
 import { useEffect } from 'react'
 import { useToast } from '@/app/components/ui/use-toast'
 import { ChevronDown, User } from 'lucide-react'
@@ -60,7 +63,20 @@ export default function ProfileDropdown({name, signedIn, image, uid}: {name: str
           <Link href={`/user/${uid}/settings`} className="p-2 text-sm block">Settings</Link>
           <Link href={`/user/${uid}/reservations`} className="p-2 text-sm block">Reservations</Link>
           <Link href={`/user/${uid}/starred`} className="p-2 text-sm block">Starred</Link>
-          <button onClick={() => unAuthenticateUser(showToaster)} className="p-2 text-sm">Sign Out</button>
+          <Dialog>
+            <DialogTrigger>
+              <button className='p-2 text-sm'>Sign Out</button>
+            </DialogTrigger>
+            <DialogContent className="w-auto px-14 py-7">
+              <DialogHeader>
+                <DialogTitle className='text-base font-medium'>Are you sure you want to sign out?</DialogTitle>
+                <DialogDescription className="flex-center justify-between gap-x-4 pt-3">
+                  <Button onClick={() => unAuthenticateUser(showToaster)} variant="destructive" className='text-sm'>Sign Out</Button>
+                  <DialogClose><Button variant="outline" className='text-black text-sm'>Cancel</Button></DialogClose>
+                </DialogDescription>
+              </DialogHeader>
+            </DialogContent>
+          </Dialog>
         </div>) 
         : (<div className='pr-3'>
           <Link href='/user/auth/sign-in' className="p-2 text-sm block">Log In</Link>
@@ -68,7 +84,6 @@ export default function ProfileDropdown({name, signedIn, image, uid}: {name: str
           <Link href='/docs/contact' className="p-2 text-sm block">Contact</Link>
           <Link href='/docs/privacy-policy' className="p-2 text-sm block">Privacy Policy</Link>
         </div>)}
-        
       </DropdownMenuContent>
     </DropdownMenu>
   )

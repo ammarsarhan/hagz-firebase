@@ -12,7 +12,7 @@ export default function MapProvider ({ children }: { children: ReactNode }) {
   });
 
   if (loadError) return <div className='h-full flex-center text-center'>Encountered error while loading Google Maps. <br/> {loadError.message}</div>
-  if(!scriptLoaded) return <div className='h-full flex-center text-center'>Map is loading...</div>
+  if(!scriptLoaded) return <div className='h-full flex-center text-center'>Loading Map...</div>
 
   return children;
 }

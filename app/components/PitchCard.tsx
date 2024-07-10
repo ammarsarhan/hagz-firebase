@@ -11,7 +11,7 @@ import {
 
 import Link from 'next/link'
  
-export default function PitchCard({}) {
+export default function PitchCard() {
   return (
     <Link href='/pitch/7436382967'>
       <Card className="w-[300px] m-4 2xl:w-[350px]">
