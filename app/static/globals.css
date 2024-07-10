@@ -79,16 +79,25 @@
   }
 }
 
-div.pulsating {
+div.pulsating-green {
   background: rgb(0, 150, 0);
   border-radius: 50%;
   height: 0.5rem;
   width: 0.5rem;
 	box-shadow: 0 0 0 0 rgba(0, 0, 0, 1);
-	animation: pulse 2s infinite;
+	animation: pulse-green 2s infinite;
 }
 
-@keyframes pulse {
+div.pulsating-red {
+  background: rgb(200, 0, 0);
+  border-radius: 50%;
+  height: 0.5rem;
+  width: 0.5rem;
+	box-shadow: 0 0 0 0 rgba(0, 0, 0, 1);
+	animation: pulse-red 2s infinite;
+}
+
+@keyframes pulse-green {
 	0% {
 		box-shadow: 0 0 0 0 rgba(0, 170, 0, 0.7);
 	}
@@ -99,6 +108,20 @@ div.pulsating {
 
 	100% {
 		box-shadow: 0 0 0 0 rgba(0, 170, 0, 0);
+	}
+}
+
+@keyframes pulse-red {
+	0% {
+		box-shadow: 0 0 0 0 rgba(170, 0, 0, 0.7);
+	}
+
+	70% {
+		box-shadow: 0 0 0 10px rgba(170, 0, 0, 0);
+	}
+
+	100% {
+		box-shadow: 0 0 0 0 rgba(170, 0, 0, 0);
 	}
 }
 

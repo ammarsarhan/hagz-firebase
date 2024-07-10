@@ -14,11 +14,10 @@ const defaultMapOptions = {
     mapTypeId: 'roadmap',
 };
 
-const defaultMapZoom = 18;
-
 export default function Map () {
     const [locationPermitted, setLocationPermitted] = useState(false); // Use this for error handling later on!
     const [mapCenter, setMapCenter] = useState({ lat: 31.2001, lng: 29.9187 });
+    const [mapZoom, setMapZoom] = useState(15)
 
     useEffect(() => {
         if ('geolocation' in navigator) {
@@ -35,7 +34,7 @@ export default function Map () {
 
     return (
         <div className="h-full w-full">
-            <GoogleMap mapContainerStyle={defaultMapContainerStyle} center={mapCenter} zoom={defaultMapZoom} options={defaultMapOptions}>
+            <GoogleMap mapContainerStyle={defaultMapContainerStyle} center={mapCenter} zoom={mapZoom} options={defaultMapOptions}>
                 <Marker position={mapCenter}/>
             </GoogleMap>
         </div>

@@ -12,7 +12,7 @@ import {
   PopoverTrigger,
 } from "@/app/components/ui/popover"
 
-export default function TimePicker ({fullWidth = false}: {fullWidth?: boolean}) {
+export default function TimePicker ({fullWidth = false, label = "Pick a time"}: {fullWidth?: boolean, label?: String}) {
     const [date, setDate] = useState<Date>()
  
     return (
@@ -26,7 +26,7 @@ export default function TimePicker ({fullWidth = false}: {fullWidth?: boolean}) 
             )}
           >
             <Clock4 className="mr-2 h-4 w-4"/>
-            {date ? format(date, "PPP") : <span>Pick a time</span>}
+            {date ? format(date, "PPP") : <span>{label}</span>}
             <ChevronDown className="h-4"/>
           </Button>
         </PopoverTrigger>

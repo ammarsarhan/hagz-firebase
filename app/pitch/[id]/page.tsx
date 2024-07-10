@@ -1,5 +1,10 @@
+'use client'
+
+import { useState } from "react"
+
 import Navigation from "@/app/components/Navigation"
 import ImageView from "@/app/components/ImageView"
+import ImageCarousel from "@/app/components/ImageCarousel"
 import DetailView from "@/app/components/DetailView"
 import PitchCard from "@/app/components/PitchCard"
 
@@ -27,8 +32,8 @@ export default function Pitch ({params}: {params: {id: string}}) {
                     </div>
                 </div>
                 <div className="w-full flex flex-col sm:p-2 sm:flex-row sm:items-center sm:justify-between md:justify-end md:gap-x-4 fixed bottom-0">
-                    <Button className="px-20 py-7 rounded-none sm:rounded-md bg-gray-600 hover:bg-gray-500">View Photos</Button>
-                    <Button className="px-20 py-7 rounded-none sm:rounded-md"><Link href={`/reserve/${params.id}`}>Reserve Pitch</Link></Button>
+                    <ImageCarousel/>
+                    <Button className="px-20 py-7 rounded-none sm:rounded-md z-40"><Link href={`/reserve/${params.id}`}>Reserve Pitch</Link></Button>
                 </div>
             </main>
         </>

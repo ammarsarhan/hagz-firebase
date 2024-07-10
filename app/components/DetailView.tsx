@@ -1,21 +1,23 @@
 "use client"
 
 import { ShareIcon, StarIcon, MapPinIcon } from "lucide-react"
+
 import DatePicker from "@/app/components/DatePicker"
 import TimePicker from "@/app/components/TimePicker"
+import AvailabilityPin from '@/app/components/AvailabilityPin'
 
 export default function DetailView () {
     return (
         <div className="flex flex-col rounded-lg sm:m-4 lg:m-0 lg:mx-2 px-5 py-7 border-[1px]">
-            <span className="mb-4 text-sm flex items-center"><div className="pulsating ml-1 mr-4"></div> Available @ Specified Time</span>
-            <div className="flex justify-between items-center mb-4">
+            <AvailabilityPin available={false}/>
+            <div className="flex justify-between items-center mb-8">
                 <span className="flex items-center text-gray-600 text-sm"><MapPinIcon width={16} height={16} className="mr-2"/>Green Plaza, Smouha, Alexandria</span>
                 <div className="flex justify-end items-center">
                     <button onClick={() => alert('Starred')}><StarIcon width={16} height={16} className="mx-3"/></button>
                     <button onClick={() => alert('Shared')}><ShareIcon width={16} height={16}/></button>
                 </div>
             </div>
-            <h1 className="text-2xl md:text-4xl font-bold mb-4 leading-[150%]">El Nasr Football Club (نادي النصر للقوات المسلحة)</h1>
+            <h1 className="text-2xl md:text-4xl font-bold mb-8 leading-[150%]">El Nasr Football Club (نادي النصر للقوات المسلحة)</h1>
             <span className="text-sm flex items-center mb-4">Rating:
                 <div className="flex mx-2">
                     <StarIcon width={16} height={16}/>
@@ -31,13 +33,13 @@ export default function DetailView () {
             </div>
             <div className="h-full flex flex-col justify-end text-sm text-gray-500 mt-4">
                 <span>Details:</span>
-                <div className="flex flex-col gap-y-2 mb-6 xxs:gap-0 xxs:flex-row xxs:justify-around items-center my-4 text-black">
-                    <div className="flex flex-col gap-y-2 text-left xxs:text-center w-full xxs:w-auto">
+                <div className="flex flex-col gap-y-2 mb-6 xxs:gap-y-0 xxs:flex-row xxs:justify-around items-center my-4 text-black">
+                    <div className="flex flex-col gap-y-2 text-left xxs:text-center w-full xxs:w-auto px-0 xxs:px-2">
                         <span className="font-semibold">Price: 250 EGP/hr</span>
                         <span className="font-semibold">Size: 5-A-Side</span>
                         <span>Ball: Provided</span>
                     </div>
-                    <div className="flex flex-col gap-y-2 text-left xxs:text-center w-full xxs:w-auto">
+                    <div className="flex flex-col gap-y-2 text-left xxs:text-center w-full xxs:w-auto px-0 xxs:px-2">
                         <span>Ground: Artificial Grass</span>
                         <span>Ball: Provided</span>
                         <span>Price: 250 EGP/hr</span>
@@ -46,8 +48,8 @@ export default function DetailView () {
                 <span>Specify Date:</span>
                 <div className="my-2">
                     <div className="flex flex-col xs:gap-x-2 xs:flex-row mt-2 xs:mt-0">
-                        <TimePicker fullWidth={true}/>
-                        <TimePicker fullWidth={true}/>
+                        <TimePicker fullWidth={true} label="Start Time"/>
+                        <TimePicker fullWidth={true} label="End Time"/>
                     </div>
                     <DatePicker fullWidth={true}/>
                 </div>

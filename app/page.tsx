@@ -20,11 +20,11 @@ export default function Home() {
             <PitchCard/>
             <PitchCard/>
           </div>
-          <MapProvider>
-            <div className="hidden bg-muted lg:block bg-green-900">
+          <div className="hidden bg-muted lg:block bg-green-900">
+            <MapProvider>
               <Map/>
-            </div>
-          </MapProvider>
+            </MapProvider>
+          </div>
         </div>
       </main>
     </>
