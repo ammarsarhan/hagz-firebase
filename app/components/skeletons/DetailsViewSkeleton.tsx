@@ -8,18 +8,18 @@ export default function DetailsViewSkeleton () {
             <Skeleton width={"70%"} height={40} className='my-4'/>
             <Skeleton width={"20%"} height={20}/>
             <div className='my-4'>
-                <Skeleton width={"90%"} height={20} count={2} className='my-2'/>
-                <Skeleton width={"80%"} height={20} className='my-2'/>
+                <Skeleton width={"80%"} height={20} count={2} className='my-2'/>
+                <Skeleton width={"70%"} height={20} className='my-2'/>
             </div>
             <div className='my-8 flex-center flex-col'>
                 <div>
-                    <Skeleton count={2} inline height={20} width={100} className='first:mr-4 my-2'/>
+                    <Skeleton count={2} inline height={20} width={150} className='first:mr-24 my-2'/>
                 </div>
                 <div>
-                    <Skeleton count={2} inline height={20} width={100} className='first:mr-4 my-2'/>
+                    <Skeleton count={2} inline height={20} width={150} className='first:mr-24 my-2'/>
                 </div>
                 <div>
-                    <Skeleton count={2} inline height={20} width={100} className='first:mr-4 my-2'/>
+                    <Skeleton count={2} inline height={20} width={150} className='first:mr-24 my-2'/>
                 </div>
             </div>
             <div className='flex flex-col sm:flex-row my-2'>

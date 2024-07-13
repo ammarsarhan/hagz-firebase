@@ -19,12 +19,13 @@ interface PitchCardProps {
   rating: number;
   price: number;
   size: string;
+  id: string;
   ballProvided: boolean;
 }
 
-export default function PitchCard ({name, description, image, place, rating, price, size, ballProvided} : PitchCardProps) {
+export default function PitchCard ({name, description, image, place, rating, price, size, id, ballProvided} : PitchCardProps) {
   return (
-    <Link href='/pitch/r7mlrusLoLQ3R601VJfC'>
+    <Link href={`/pitch/${id}`}>
       <Card className="w-[300px] m-4 2xl:w-[350px]">
         <CardHeader className='flex items-center'>
           <Image src={image} width={275} height={275} alt='Pitch Image' className='border-[1px] rounded-md mb-4'/>

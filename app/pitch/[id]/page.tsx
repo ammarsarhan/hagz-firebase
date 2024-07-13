@@ -20,22 +20,7 @@ import { doc, getDoc } from "firebase/firestore"
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 
-type PitchType = {
-    name: string,
-    description: string,
-    price: number,
-    rating: number,
-    size: string,
-    ballProvided: boolean,
-    groundType: string,
-    place: string,
-    mapLink: string,
-    owner: string,
-    coordinates: {latitude: number, longitude: number}
-    reservations: [],
-    images: [],
-}
-
+import { PitchType } from "@/lib/types"
 
 export default function Pitch ({params}: {params: {id: string}}) {
     const router = useRouter();
@@ -56,7 +41,7 @@ export default function Pitch ({params}: {params: {id: string}}) {
         }
         
         fetchPitch();
-    }, [params.id])
+    }, [params.id, router])
 
     useEffect(() => {
         if (pitch != null) {
