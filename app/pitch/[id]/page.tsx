@@ -8,6 +8,7 @@ import PitchCard from "@/app/components/PitchCard"
 
 import DetailsViewSkeleton from '@/app/components/skeletons/DetailsViewSkeleton'
 import ImageViewSkeleton from '@/app/components/skeletons/ImageViewSkeleton'
+import PitchCardSkeleton from "@/app/components/skeletons/PitchCardSkeleton"
 
 import { Button } from "@/app/components/ui/button"
 import { Label } from "@/app/components/ui/label"
@@ -84,7 +85,7 @@ export default function Pitch ({params}: {params: {id: string}}) {
                 <div className="my-6">
                     <Label className="mx-8 text-gray-700">Other Pitches You May Like:</Label>
                     <div className="flex overflow-x-scroll mb-28 sm:my-2">
-                        {Array(5).fill(<PitchCard/>)} {/* Don't forget to fill with recommended later! */}
+                        {loading ? Array(5).fill(<PitchCardSkeleton/>) : Array(5).fill(<PitchCard/>)} {/* Don't forget to fill with recommended later! */}
                     </div>
                 </div>
                 <div className="w-full flex flex-col sm:p-2 sm:flex-row sm:items-center sm:justify-between md:justify-end md:gap-x-4 fixed bottom-0">
