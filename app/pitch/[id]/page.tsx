@@ -18,6 +18,7 @@ import { db } from "@/firebase/config"
 import { doc, getDoc } from "firebase/firestore"
 
 import { useState, useEffect } from 'react'
+import { useRouter } from 'next/navigation'
 
 type PitchType = {
     name: string,
@@ -36,8 +37,8 @@ type PitchType = {
 }
 
 
-
 export default function Pitch ({params}: {params: {id: string}}) {
+    const router = useRouter();
     
     const [loading, setLoading] = useState(true);
     const [pitch, setPitch] = useState<PitchType | null>(null);
@@ -47,12 +48,23 @@ export default function Pitch ({params}: {params: {id: string}}) {
             const pitchRef = doc(db, 'pitches', params.id);
             const pitchData = await getDoc(pitchRef);
     
-            if (!pitchData.exists()) console.log("Pitch does not exist!"); // Handle this by pushing to 404 page later.
-            setPitch(pitchData.data() as PitchType)
+            if (pitchData.exists()) {
+                setPitch(pitchData.data() as PitchType)
+            } else {
+                router.push('/not-found')
+            }
         }
         
-        fetchPitch().then(() => setLoading(false));
+        fetchPitch();
     }, [params.id])
+
+    useEffect(() => {
+        if (pitch != null) {
+            setLoading(false);
+        } else {
+            setLoading(true);
+        }
+    }, [pitch])
 
     return (
         <>
