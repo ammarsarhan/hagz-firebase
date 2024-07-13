@@ -6,6 +6,9 @@ import ImageCarousel from "@/app/components/ImageCarousel"
 import DetailView from "@/app/components/DetailView"
 import PitchCard from "@/app/components/PitchCard"
 
+import DetailsViewSkeleton from '@/app/components/skeletons/DetailsViewSkeleton'
+import ImageViewSkeleton from '@/app/components/skeletons/ImageViewSkeleton'
+
 import { Button } from "@/app/components/ui/button"
 import { Label } from "@/app/components/ui/label"
 import Link from "next/link"
@@ -26,41 +29,57 @@ type PitchType = {
     place: string,
     mapLink: string,
     owner: string,
+    coordinates: {latitude: number, longitude: number}
     reservations: [],
     images: [],
-    location: []
 }
 
-export default function Pitch ({params}: {params: {id: string}}) {
-    const [pitch, setPitch] = useState<PitchType | null>(null);
 
+
+export default function Pitch ({params}: {params: {id: string}}) {
+    
+    const [loading, setLoading] = useState(true);
+    const [pitch, setPitch] = useState<PitchType | null>(null);
+    
     useEffect(() => {
         const fetchPitch = async () => {
-            const query = await getDoc(doc(db, 'pitches', params.id))
-            setPitch(query.data() as PitchType)
+            const pitchRef = doc(db, 'pitches', params.id);
+            const pitchData = await getDoc(pitchRef);
+    
+            if (!pitchData.exists()) console.log("Pitch does not exist!"); // Handle this by pushing to 404 page later.
+            setPitch(pitchData.data() as PitchType)
         }
-
-        fetchPitch()
-    }, [])
+        
+        fetchPitch().then(() => setLoading(false));
+    }, [params.id])
 
     return (
         <>
             <Navigation/>
             <main>
                 <div className="grid lg:grid-cols-2 p-5 border-b-[1px]">
-                    <DetailView 
-                        name={pitch?.name || ''} 
-                        description={pitch?.description || ''} 
-                        price={pitch?.price || 0} 
-                        rating={pitch?.rating || 0}
-                        size={pitch?.size || ''}
-                        ballProvided={pitch?.ballProvided || false}
-                        groundType={pitch?.groundType || ''}
-                        place={pitch?.place || ''}
-                        mapLink={pitch?.mapLink || ''}
-                        reservations={pitch?.reservations || []}
-                    />
-                    <ImageView images={pitch?.images.slice(0, 4) || []}/>
+                    {loading ? 
+                    <>
+                        <DetailsViewSkeleton/>
+                        <ImageViewSkeleton/>
+                    </> : 
+                    <>                    
+                        <DetailView 
+                            name={pitch?.name || ''} 
+                            description={pitch?.description || ''} 
+                            price={pitch?.price || 0} 
+                            rating={pitch?.rating || 0}
+                            size={pitch?.size || ''}
+                            ballProvided={pitch?.ballProvided || false}
+                            groundType={pitch?.groundType || ''}
+                            place={pitch?.place || ''}
+                            mapLink={pitch?.mapLink || ''}
+                            coordinates={pitch?.coordinates || {latitude: 29, longitude: 31}}
+                            reservations={pitch?.reservations || []}
+                        />
+                        <ImageView images={pitch?.images.slice(0, 4) || []}/>
+                    </>
+                    }
                 </div>
                 <div className="my-6">
                     <Label className="mx-8 text-gray-700">Other Pitches You May Like:</Label>

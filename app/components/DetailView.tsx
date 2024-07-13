@@ -18,10 +18,11 @@ interface DetailViewProps {
     groundType: string,
     place: string,
     mapLink: string,
+    coordinates: {latitude: number, longitude: number},
     reservations: []
 }
 
-export default function DetailView ({name, description, price, rating, size, ballProvided, groundType, place, mapLink, reservations}: DetailViewProps) {
+export default function DetailView ({name, coordinates, description, price, rating, size, ballProvided, groundType, place, mapLink, reservations}: DetailViewProps) {
     const [availability, setAvailability] = useState(false)
 
     return (
@@ -55,8 +56,8 @@ export default function DetailView ({name, description, price, rating, size, bal
                     </div>
                     <div className="flex flex-col gap-y-2 text-left xxs:text-center w-full xxs:w-auto px-0 xxs:px-2">
                         <span>Ground: {groundType}</span>
-                        <span>Coordinates: </span>
-                        <span>Price: 250 EGP/hr</span>
+                        <span>Coordinates: {`${coordinates.latitude.toFixed(2)}, ${coordinates.longitude.toFixed(2)}`}</span>
+                        <span>6th Amenity</span>
                     </div>
                 </div>
                 <span>Specify Date:</span>
