@@ -11,7 +11,7 @@ import { Button } from '@/app/components/ui/button'
 
 import Image from 'next/image'
 
-export default function ImageCarousel () {
+export default function ImageCarousel ({images} : {images: string[]}) {
     return (
         <Dialog>
             <DialogTrigger>
@@ -22,24 +22,13 @@ export default function ImageCarousel () {
                     <DialogTitle>Photos</DialogTitle>
                     <Carousel className="h-full w-full" opts={{ align: "center" }}>
                         <CarouselContent className="h-full w-full">
-                            <CarouselItem className="h-full w-full">
-                                <Image className="!static" fill src={""} alt="Pitch Image 1"/>
-                            </CarouselItem>
-                            <CarouselItem className="h-full w-full">
-                                <Image className="!static" fill src={""} alt="Pitch Image 2"/>
-                            </CarouselItem>
-                            <CarouselItem className="h-full w-full">
-                                <Image className="!static" fill src={""} alt="Pitch Image 3"/>
-                            </CarouselItem>
-                            <CarouselItem className="h-full w-full">
-                                <Image className="!static" fill src={""} alt="Pitch Image 4"/>
-                            </CarouselItem>
-                            <CarouselItem className="h-full w-full">
-                                <Image className="!static" fill src={""} alt="Pitch Image 5"/>
-                            </CarouselItem>
-                            <CarouselItem className="h-full w-full">
-                                <Image className="!static" fill src={""} alt="Pitch Image 6"/>
-                            </CarouselItem>
+                            {images.map((source, index) => {
+                                return (
+                                    <CarouselItem key={index} className="h-full w-full">
+                                        <Image className="!static" fill src={source} alt={`Pitch Image ${index + 1}`}/>
+                                    </CarouselItem>
+                                )
+                            })}
                         </CarouselContent>
                         <CarouselPrevious/>
                         <CarouselNext/>

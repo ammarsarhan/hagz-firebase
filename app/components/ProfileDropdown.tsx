@@ -18,7 +18,6 @@ import {
 import { Dialog, DialogTrigger, DialogContent, DialogTitle, DialogHeader, DialogDescription, DialogClose } from '@/app/components/ui/dialog'
 import { Button } from '@/app/components/ui/button'
 
-import { useEffect } from 'react'
 import { useToast } from '@/app/components/ui/use-toast'
 import { ChevronDown, User } from 'lucide-react'
 import unAuthenticateUser from "@/firebase/auth/sign-out"
@@ -67,10 +66,10 @@ export default function ProfileDropdown({name, signedIn, image, uid}: {name: str
             <DialogTrigger>
               <button className='p-2 text-sm'>Sign Out</button>
             </DialogTrigger>
-            <DialogContent className="w-auto px-14 py-7">
+            <DialogContent className="w-auto px-14 py-5">
               <DialogHeader>
-                <DialogTitle className='text-base font-medium'>Are you sure you want to sign out?</DialogTitle>
-                <DialogDescription className="flex-center justify-between gap-x-4 pt-3">
+                <DialogTitle className='text-base font-medium'>Are You Sure You Want To Sign Out?</DialogTitle>
+                <DialogDescription className="flex-center justify-between gap-x-4 pt-2">
                   <Button onClick={() => unAuthenticateUser(showToaster)} variant="destructive" className='text-sm'>Sign Out</Button>
                   <DialogClose><Button variant="outline" className='text-black text-sm'>Cancel</Button></DialogClose>
                 </DialogDescription>
