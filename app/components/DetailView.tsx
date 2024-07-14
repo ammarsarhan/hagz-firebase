@@ -57,7 +57,7 @@ export default function DetailView ({name, coordinates, description, price, rati
                     <div className="flex flex-col gap-y-2 text-left xxs:text-center w-full xxs:w-auto px-0 xxs:px-2">
                         <span>Ground: {groundType}</span>
                         <span>Coordinates: {`${coordinates.latitude.toFixed(2)}, ${coordinates.longitude.toFixed(2)}`}</span>
-                        <span>6th Amenity</span>
+                        <span>Number of Pitches: {6}</span>
                     </div>
                 </div>
                 <span>Specify Date:</span>

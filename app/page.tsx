@@ -17,6 +17,7 @@ import { PitchType } from "@/lib/types";
 export default function Home() {
 
   const [loading, setLoading] = useState(true)
+  const [nextLoading, setNextLoading] = useState(false)
   const [lastKey, setLastKey] = useState<DocumentSnapshot | null>(null)
   const [pitches, setPitches] = useState<PitchType[]>([])
 
@@ -37,6 +38,12 @@ export default function Home() {
     setLastKey(lastDoc);
   }
 
+  const handleBottomReached = () => {
+    setNextLoading(true);
+    getNextPitches();
+    setNextLoading(false);
+  }
+
   return (
     <>
       <Navigation/>
@@ -44,25 +51,28 @@ export default function Home() {
       <main className="flex-1 overflow-auto">
         <div className="w-full lg:grid lg:h-full lg:grid-cols-2">
           <div className="p-5 h-full flex justify-around flex-wrap overflow-scroll">
-            { loading ? <>
-              {Array(4).fill(<PitchCardSkeleton/>)}</> :
-              pitches?.map((pitch) => {
-                return <PitchCard 
-                  key={pitch.id}
-                  name={pitch.name}
-                  description={pitch.description}
-                  image={pitch.images[0]} 
-                  place={pitch.place} 
-                  rating={pitch.rating}
-                  price={pitch.price}
-                  size={pitch.size}
-                  id={pitch.id}
-                  ballProvided={pitch.ballProvided}/>
-              })
+            { loading ? <> {Array(4).fill(<PitchCardSkeleton/>)} </> :
+              <>
+                {
+                  pitches?.map((pitch) => {
+                    return <PitchCard 
+                      key={pitch.id}
+                      name={pitch.name}
+                      description={pitch.description}
+                      image={pitch.images[0]} 
+                      place={pitch.place} 
+                      rating={pitch.rating}
+                      price={pitch.price}
+                      size={pitch.size}
+                      id={pitch.id}
+                      ballProvided={pitch.ballProvided}/>
+                  })
+                }
+                { nextLoading && <> { Array(2).fill(<PitchCardSkeleton/>) } </> }
+              </>
             }
           </div>
-          <button onClick={() => getNextPitches()}>Get more data - Last key: {lastKey?.id}</button>
-          <div className="hidden bg-muted lg:block bg-green-900">
+          <div className="hidden bg-muted lg:block bg-green-900" onClick={() => handleBottomReached()}>
             <MapProvider>
               <Map/>
             </MapProvider>

@@ -21,26 +21,33 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 
 import { PitchType } from "@/lib/types"
+import { fetchRecommendedPitches } from "@/lib/fetch"
 
 export default function Pitch ({params}: {params: {id: string}}) {
     const router = useRouter();
     
     const [loading, setLoading] = useState(true);
+    const [recommendedLoading, setRecommendedLoading] = useState(true);
     const [pitch, setPitch] = useState<PitchType | null>(null);
+    const [recommendedPitches, setRecommendedPitches] = useState<PitchType[] | null>(null);
     
     useEffect(() => {
-        const fetchPitch = async () => {
+        const fetchDetails = async () => {
             const pitchRef = doc(db, 'pitches', params.id);
             const pitchData = await getDoc(pitchRef);
     
             if (pitchData.exists()) {
-                setPitch(pitchData.data() as PitchType)
+                const data = pitchData.data();
+                setPitch(data as PitchType);
+
+                const recommended = await fetchRecommendedPitches(data.recommended);
+                setRecommendedPitches(recommended); // Find out why react is not detecting state changes!
             } else {
-                router.push('/not-found')
+                router.push('/not-found');
             }
         }
         
-        fetchPitch();
+        fetchDetails()
     }, [params.id, router])
 
     useEffect(() => {
@@ -50,6 +57,14 @@ export default function Pitch ({params}: {params: {id: string}}) {
             setLoading(true);
         }
     }, [pitch])
+
+    useEffect(() => {
+        if (recommendedPitches != null) {
+            setRecommendedLoading(false);
+        } else {
+            setRecommendedLoading(true);
+        }
+    }, [recommendedPitches])
 
     return (
         <>
@@ -82,7 +97,21 @@ export default function Pitch ({params}: {params: {id: string}}) {
                 <div className="my-6">
                     <Label className="mx-8 text-gray-700">Other Pitches You May Like:</Label>
                     <div className="flex overflow-x-scroll mb-28 sm:my-2">
-                        {loading ? Array(5).fill(<PitchCardSkeleton/>) : Array(5).fill(<PitchCard/>)} {/* Don't forget to fill with recommended later! */}
+                        {recommendedLoading ? Array(5).fill(<PitchCardSkeleton/>) : 
+                        recommendedPitches?.map((el, index) => {
+                            return <PitchCard 
+                                key={index} 
+                                name={el.name} 
+                                description={el.description} 
+                                image={el.images[0]} 
+                                place={el.place} 
+                                rating={el.rating} 
+                                price={el.price} 
+                                size={el.size} 
+                                id={el.id} 
+                                ballProvided={el.ballProvided}
+                            />
+                        })}
                     </div>
                 </div>
                 <div className="w-full flex flex-col sm:p-2 sm:flex-row sm:items-center sm:justify-between md:justify-end md:gap-x-4 fixed bottom-0">

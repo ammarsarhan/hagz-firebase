@@ -13,5 +13,5 @@ export interface PitchType {
     coordinates: {latitude: number, longitude: number}
     images: string[],
     reservations: [],
-    recommended: [],
+    recommended: string[],
 }

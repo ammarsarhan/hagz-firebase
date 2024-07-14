@@ -28,7 +28,7 @@ export default function PitchCard ({name, description, image, place, rating, pri
     <Link href={`/pitch/${id}`}>
       <Card className="w-[300px] m-4 2xl:w-[350px]">
         <CardHeader className='flex items-center'>
-          <Image src={image} width={275} height={275} alt='Pitch Image' className='border-[1px] rounded-md mb-4'/>
+          <Image src={image} width={275} height={275} alt='Pitch Image' className='border-[1px] rounded-md mb-4 object-cover h-[275px]'/>
           <CardTitle className='text-md self-start'>{name}</CardTitle>
           <CardDescription className='self-start break-words'>{description}</CardDescription>
           <CardDescription className='self-start'>Location: {place}</CardDescription>
