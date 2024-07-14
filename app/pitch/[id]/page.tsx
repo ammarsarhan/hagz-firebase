@@ -17,7 +17,7 @@ import Link from "next/link"
 import { db } from "@/firebase/config"
 import { doc, getDoc } from "firebase/firestore"
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useReducer } from 'react'
 import { useRouter } from 'next/navigation'
 
 import { PitchType } from "@/lib/types"
@@ -29,7 +29,7 @@ export default function Pitch ({params}: {params: {id: string}}) {
     const [loading, setLoading] = useState(true);
     const [recommendedLoading, setRecommendedLoading] = useState(true);
     const [pitch, setPitch] = useState<PitchType | null>(null);
-    const [recommendedPitches, setRecommendedPitches] = useState<PitchType[] | null>(null);
+    const [recommendedPitches, setRecommendedPitches] = useState<PitchType[]>([]);
     
     useEffect(() => {
         const fetchDetails = async () => {
@@ -41,13 +41,13 @@ export default function Pitch ({params}: {params: {id: string}}) {
                 setPitch(data as PitchType);
 
                 const recommended = await fetchRecommendedPitches(data.recommended);
-                setRecommendedPitches(recommended); // Find out why react is not detecting state changes!
+                setRecommendedPitches(recommended); // Does not re-render on state change??
             } else {
                 router.push('/not-found');
             }
         }
         
-        fetchDetails()
+        fetchDetails();
     }, [params.id, router])
 
     useEffect(() => {
@@ -98,7 +98,7 @@ export default function Pitch ({params}: {params: {id: string}}) {
                     <Label className="mx-8 text-gray-700">Other Pitches You May Like:</Label>
                     <div className="flex overflow-x-scroll mb-28 sm:my-2">
                         {recommendedLoading ? Array(5).fill(<PitchCardSkeleton/>) : 
-                        recommendedPitches?.map((el, index) => {
+                        recommendedPitches.map((el, index) => {
                             return <PitchCard 
                                 key={index} 
                                 name={el.name} 

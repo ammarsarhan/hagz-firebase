@@ -8,7 +8,7 @@ import PitchCardSkeleton from "./components/skeletons/PitchCardSkeleton";
 import MapProvider from "@/context/MapProvider";
 import Map from "@/app/components/Map";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { fetchInitialPitches, fetchNextPitches } from "@/lib/fetch";
 import { DocumentSnapshot } from "firebase/firestore";
 
@@ -33,24 +33,36 @@ export default function Home() {
   }, [])
 
   const getNextPitches = async () => {
-    const { nextPitches, lastDoc } = await fetchNextPitches(lastKey);
+    const { nextPitches, lastDoc } = await fetchNextPitches(lastKey as DocumentSnapshot);
     setPitches(pitches.concat(nextPitches));
     setLastKey(lastDoc);
   }
 
-  const handleBottomReached = () => {
-    setNextLoading(true);
-    getNextPitches();
-    setNextLoading(false);
+  const handleBottomReachedDesktop = (event) => {
+    let currentPosition = Math.abs(event.target.scrollHeight - event.target.scrollTop - event.target.clientHeight);
+    if (currentPosition < 1) {
+      setNextLoading(true);
+      getNextPitches();
+      setNextLoading(false);
+    }
+  }
+
+  const handleBottomReachedMobile = (event) => {
+    let currentPosition = Math.abs(event.target.scrollHeight - event.target.scrollTop - event.target.clientHeight);
+    if (currentPosition < 1) {
+      setNextLoading(true);
+      getNextPitches();
+      setNextLoading(false);
+    }
   }
 
   return (
     <>
       <Navigation/>
       <Filter/>
-      <main className="flex-1 overflow-auto">
+      <main className="flex-1 overflow-auto" onScroll={(event) => handleBottomReachedMobile(event)}>
         <div className="w-full lg:grid lg:h-full lg:grid-cols-2">
-          <div className="p-5 h-full flex justify-around flex-wrap overflow-scroll">
+          <div className="p-5 h-full flex justify-around flex-wrap overflow-scroll" onScroll={(event) => handleBottomReachedDesktop(event)}>
             { loading ? <> {Array(4).fill(<PitchCardSkeleton/>)} </> :
               <>
                 {
@@ -72,7 +84,7 @@ export default function Home() {
               </>
             }
           </div>
-          <div className="hidden bg-muted lg:block bg-green-900" onClick={() => handleBottomReached()}>
+          <div className="hidden bg-muted lg:block bg-green-900">
             <MapProvider>
               <Map/>
             </MapProvider>
